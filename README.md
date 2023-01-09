@@ -5,7 +5,7 @@
 <li>type command <b>cp .env.example .env</b> </li>
 <li>create databases</li>
 </ul>
-### Then type the commands below
+<h3>Then type the commands below</h3>
 <ul>
 <li>composer install</li>
 <li>php artisan optimize:clearl</li>
@@ -16,3 +16,7 @@
 <li>npm run dev</li>
 <li>open anothe terminal tab and write command :   php artisan serve</li>
 </ul>
+
+## ScreenShot
+
+<img src="https://i.ibb.co/VmGJpfG/Todo.jpg">
