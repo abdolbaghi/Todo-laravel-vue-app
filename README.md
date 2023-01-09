@@ -5,11 +5,10 @@
 <li>type command <b>cp .env.example .env</b> </li>
 <li>create databases</li>
 </ul>
-<h3>Then type the commands below</h3>
+<h4>Then type the commands below</h4>
 <ul>
 <li>composer install</li>
-<li>php artisan optimize:clearl</li>
-<li>php artisan optimize:clearl</li>
+<li>php artisan optimize:clear</li>
 <li>php artisan key:generate   (generate app key)</li>
 <li>php artisan migrate</li>
 <li>npm install</li>
