@@ -1,19 +1,34 @@
 <template>
     <div class="addItem">
         <input type="text" v-model="item.name">
+        <input type="number" v-model="item.point" style="width: 30px;">
+        <select v-model="item.category" >
+            <option v-for="(cat, index) in categories" :key="index" :value="cat.id" :style="{'background-color':crergb(cat.color)}">
+                <img :src = "cat.icon" alt="My Happy SVG"/>
+                {{cat.name}}
+            </option>
+        </select>
+        <date-picker v-model="item.date"></date-picker>
         <font-awesome-icon @click="addItem()" :class="[item.name ? 'active' : 'inactive', 'plus']" icon="plus-square" />
     </div>
 </template>
-
 <script>
+import DatePicker from 'vue3-persian-datetime-picker';
 export default {
     data() {
         return {
             item: {
-                name: ''
+                name: '',
+                point: 1,
+                category: null,
+                date: ''
             }
         }
     },
+    components: {
+      DatePicker
+    },
+    props: ["categories"],
     methods: {
         addItem() {
             if (this.item.name == "") {
@@ -33,6 +48,9 @@ export default {
                     console.log(error);
                 });
         },
+        crergb(color){
+            return "rgb("+color[0]+","+color[1]+","+color[2]+")"
+        }
     }
 }
 </script>

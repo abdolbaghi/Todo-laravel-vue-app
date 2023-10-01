@@ -10,4 +10,13 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    resolve: {
+        mainFields: [
+          'browser',
+          'module',
+          'main',
+          'jsnext:main',
+          'jsnext'
+        ]
+      }
 });

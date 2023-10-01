@@ -2,7 +2,7 @@
     <div class="todoListContainer">
         <div class="heading">
             <h2 id="title">Todo List</h2>
-            <addItemForm @reloadlist="getList()" />
+            <addItemForm :categories="categories" @reloadlist="getList()" />
         </div>
         <listView :items="items" @reloadlist="getList()" />
     </div>
@@ -14,7 +14,9 @@ import listView from './listView.vue';
 export default {
     data() {
         return {
-            items: []
+            items: [],
+            categories:[],
+            categories_dict:[],
         }
     },
     components: {
@@ -28,10 +30,22 @@ export default {
             }).catch((error) => {
                 console.log(error);
             })
+        },
+        getCat() {
+            axios.get('/api/categories').then((response)=> {
+                this.categories = response.data
+                for(var cat in this.categories){
+                    this.categories_dict[cat.id]=cat
+                }
+
+            }).catch((error) => {
+                console.log(error);
+            })
         }
     },
     mounted() {
         this.getList();
+        this.getCat();
     }
 }
 </script>
