@@ -24,7 +24,26 @@ class ItemController extends Controller
     public function index()
     {
         //
-        return Item::orderBy('created_at', 'Desc')->get();
+        return Item::orderBy('created_at', 'Desc')->get()->map(function ($item, $key){
+            #change date type 
+            $date_arr = explode("-",$item->due_date);
+            $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);
+            #add category ralation
+            $item->category = config('categories')[$item->cat_id-1];
+            return $item;
+        });
+    }
+    public function dailyGrouped()
+    {
+        //
+        return Item::orderBy('created_at', 'Desc')->get()->map(function ($item, $key){
+            #change date type 
+            $date_arr = explode("-",$item->due_date);
+            $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);
+            #add category ralation
+            $item->category = config('categories')[$item->cat_id-1];
+            return $item;
+        })->groupBy('due_date');
     }
 
     /**

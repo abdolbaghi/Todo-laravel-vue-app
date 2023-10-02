@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/items', [ItemController::class, 'index']);
+Route::get('/items/grouped', [ItemController::class, 'dailyGrouped']);
 Route::get('/categories', [CategoriesController::class, 'index']);
 
 Route::prefix('item')->group(function () {

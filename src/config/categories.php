@@ -36,7 +36,7 @@ return [
         #           R    G   B
         "color"=>[163, 218, 231],
         "classes"=>[],
-        "icon"=>"/icons/family6.svg"
+        "icon"=>"/icons/family.svg"
     ],
     [
         "id"=>5,
@@ -55,6 +55,15 @@ return [
         "color"=>[210, 108, 244],
         "classes"=>["fa","fa-umbrella"],
         "icon"=>"/icons/icecream.svg"
+    ],
+    [
+        "id"=>7,
+        "name"=>"finance",
+        "description"=>"finance",
+        #           R    G   B
+        "color"=>[255, 192, 203],
+        "classes"=>[],
+        "icon"=>"/icons/dollar-sign.svg"
     ],
     [
         "id"=>8,

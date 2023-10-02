@@ -1,9 +1,11 @@
 <template>
-    <div class="item">
+    <div class="item" :style="{'background-color':crergb(item.category.color)}">
         <input type="checkbox" @change="updateCheck()" v-model="item.completed" ref="inputRef" />
+        <img :src = "item.category.icon" class="icon-cat"/>
         <span :class="[item.completed ? 'completed' : '', 'itemText']">{{
             item.name
-        }}</span>
+        }} ({{ item.point }})</span>
+        <span>{{ item.due_date }}</span>
         <button @click="removeItem()" class="trashcan">
             <font-awesome-icon icon="trash" />
         </button>
@@ -40,6 +42,9 @@ export default {
                     console.log(error);
                 });
         },
+        crergb(color){
+            return "rgb("+color[0]+","+color[1]+","+color[2]+")"
+        }
     },
 
     mounted() {
@@ -72,5 +77,8 @@ export default {
     color: #ff0000;
     outline: none;
     cursor: pointer;
+}
+.icon-cat {
+    max-width:20px
 }
 </style>
