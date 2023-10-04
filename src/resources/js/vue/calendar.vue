@@ -3,15 +3,22 @@
     <!-- days sourced from: https://nationaldaycalendar.com/february/ -->
     <h1>February 2022</h1>
     <p>Holidays and Daily Observances in the United States</p>
+    
     <ul>
         <div class="item" v-for="(items, date) in collection" > 
             <calendarDay :items="items" :date="date"  />
         </div>
     </ul>
+        <BarChart :collection="collection" :key="collection"   />
 </template>
 
 <script>
+import { useRouter, useRoute } from 'vue-router';
 import calendarDay from './calendarDay.vue';
+import BarChart from './barChart.vue';
+import {  ref } from 'vue';
+const renderComponent = ref(false);
+
 export default {
     data() {
         return {
@@ -19,19 +26,22 @@ export default {
         }
     },
     components: {
-        addItemForm,
-        listView
+        calendarDay,
+        BarChart
     },
     methods: {
         getList() {
             axios.get('api/items/grouped').then((response)=> {
                 this.collection = response.data
+                this.$forceUpdate(); // add forceUpdate
+
             }).catch((error) => {
                 console.log(error);
             })
+            renderComponent.value = true;
         }
     },
-    mounted() {
+    created() {
         this.getList();
     }
 }

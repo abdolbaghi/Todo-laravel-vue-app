@@ -8,13 +8,14 @@
                 {{cat.name}}
             </option>
         </select>
-        <date-picker v-model="item.date"></date-picker>
+        <date-picker v-model="item.date" simple></date-picker>
         <font-awesome-icon @click="addItem()" :class="[item.name ? 'active' : 'inactive', 'plus']" icon="plus-square" />
     </div>
 </template>
 <script>
 import DatePicker from 'vue3-persian-datetime-picker';
 export default {
+    name: 'addItemForm',
     data() {
         return {
             item: {

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { useRouter, useRoute } from 'vue-router';
 import addItemForm from './addItemForm.vue';
 import listView from './listView.vue';
 export default {

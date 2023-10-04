@@ -39,19 +39,27 @@ export default {
         //             console.log(error);
         //         });
         // },
-        // crergb(color){
-        //     return "rgb("+color[0]+","+color[1]+","+color[2]+")"
-        // }
+        crergb(color){
+            return "rgb("+color[0]+","+color[1]+","+color[2]+")"
+        }
     },
 
     mounted() {
         // this.item.completed ? this.$refs.inputRef.checked = true : '';
+            // console.log(JSON.stringify(this.items))
+
     }
 
 };
 </script>
 
 <style scoped>
+.icon-cat {
+    max-width:20px
+}
+.filter-green{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
 ul li {
   display: flex;
   width: 10rem;
