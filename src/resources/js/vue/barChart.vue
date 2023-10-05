@@ -18,59 +18,74 @@ export default {
   props: ["collection"],
   setup(props) {
     // setup() receives props as the first argument.
-    console.log(JSON.stringify(props.collection))
+    // console.log(JSON.stringify(props.collection))
   },
   data() {
     return {
-      chartData: {
-        labels: [ 'January', 'February', 'March' ],
-        datasets: [ { data: [40, 20, 12] } ]
-      },
+      groupeddata:this.collection,
+      chartData: this.create_bar_data(),
       chartOptions: {
         responsive: true
       },
-      groupeddata:this.collection
     }
   },
    methods: {
     create_bar_data(){
-        let done=[] 
-        let not_done=[]
-        console.log("sadasd",JSON.stringify(this.groupeddata))
-        for(const date in this.groupeddata){
-            for(const item in this.groupeddata[date]){
+        var done={} 
+        var not_done={}
+        for(const date in this.collection){
+            for(const index in this.collection[date]){
+                const item = this.collection[date][index]
                 if(item.completed){
-                    if(item.cat_id in done){
-                        done[item.cat_id].count += 1;
+                    if(item.category.name in done){
+                        done[item.category.name].count += 1;
                     }
                     else{
-                        done[item.cat_id] = item.category
-                        done[item.cat_id]['count']=1
+                        done[item.category.name] = item.category
+                        done[item.category.name]['count']=1
                     }
                 }
                 else{
-                    if(item.cat_id in done){
-                        not_done[item.cat_id].count += 1;
+                    if(item.category.name in not_done){
+                        not_done[item.category.name].count += 1;
                     }
                     else{
-                        not_done[item.cat_id] = item.category
-                        not_done[item.cat_id]['count']=1
+                        not_done[item.category.name] = item.category
+                        not_done[item.category.name]['count']=1
                 }
             }
 
             }
         }
-        console.log(JSON.stringify(done),JSON.stringify(not_done))
+        var keys = Object.keys(done);
+        keys = keys.concat(Object.keys(not_done));
+        var done_data = []
+        var not_done_data = []
+        for(const index in keys){
+            if (keys[index] in done){
+                done_data.push(done[keys[index]]['count'])
+            }
+            else{
+                done_data.push(0)
+            }
+            if (keys[index] in not_done){
+                not_done_data.push(not_done[keys[index]]['count'])
+            }
+            else{
+                not_done_data.push(0)
+            }
+        }
+        console.log("dasdasd",JSON.stringify(keys),JSON.stringify(done_data),JSON.stringify(not_done_data))
 
         return {
-            labels: [  ],
-            datasets: [ { data: [] } ]
+            labels: keys,
+            datasets: [ { data: done_data },{ data: not_done_data } ]
         
         }
     }
   },
   mounted() {
-    this.create_bar_data()
+    
   }
 }
 </script>
