@@ -24,10 +24,13 @@ class ItemController extends Controller
     public function index()
     {
         //
-        return Item::orderBy('created_at', 'Desc')->get()->map(function ($item, $key){
-            #change date type 
-            $date_arr = explode("-",$item->due_date);
-            $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);
+        return Item::where('due_date',Carbon::now()->toDateString())->orWhere('due_date',null)->orderBy('created_at', 'Desc')->get()->map(function ($item, $key){
+            if($item->due_date != null)
+            {
+                #change date type 
+                $date_arr = explode("-",$item->due_date);
+                $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);
+            }
             #add category ralation
             $item->category = config('categories')[$item->cat_id-1];
             return $item;
@@ -37,9 +40,12 @@ class ItemController extends Controller
     {
         //
         return Item::orderBy('created_at', 'Desc')->get()->map(function ($item, $key){
-            #change date type 
-            $date_arr = explode("-",$item->due_date);
-            $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);
+            if($item->due_date != null)
+            {
+                #change date type 
+                $date_arr = explode("-",$item->due_date);
+                $item->due_date = $this->gregorianJalali->gregorian_to_jalali($date_arr[0],$date_arr[1],$date_arr[2],true);     
+            }
             #add category ralation
             $item->category = config('categories')[$item->cat_id-1];
             return $item;
@@ -70,8 +76,11 @@ class ItemController extends Controller
         $newItem->name = $request->item['name'];
         $newItem->point = $request->item['point'];
         $newItem->cat_id = $request->item['category'];
-        $date_arr = explode("/",$request->item['date']);
-        $newItem->due_date = $this->gregorianJalali->jalali_to_gregorian($date_arr[0],$date_arr[1],$date_arr[2],true);
+        if(isset($request->item['date']) and count($request->item['date']) > 0)
+        {
+            $date_arr = explode("/",$request->item['date']);
+            $newItem->due_date = $this->gregorianJalali->jalali_to_gregorian($date_arr[0],$date_arr[1],$date_arr[2],true);
+        }
         $newItem->save();
 
         return $newItem;
@@ -114,6 +123,10 @@ class ItemController extends Controller
         if ($exitingItem) {
             $exitingItem->completed = $request->item['completed'];
             $exitingItem->completed_at = $request->item['completed'] ? Carbon::now() : null;
+            if ($exitingItem->due_date == null)
+            {
+                $exitingItem->due_date = $request->item['completed'] ? Carbon::now()->toDateString() : null;
+            }
             $exitingItem->save();
             return $exitingItem;
         }

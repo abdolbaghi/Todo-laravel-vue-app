@@ -1,11 +1,15 @@
 <template>
-    <div class="item" :style="{'background-color':crergb(item.category.color)}">
+    <div class="event">
         <input type="checkbox" @change="updateCheck()" v-model="item.completed" ref="inputRef" />
+
+        <i class="ion ion-ios-flame hot" :class="[item.completed ? 'done' : '']" :style="{'background-color':crergb(item.category.color)}"></i>
         <img :src = "item.category.icon" class="icon-cat"/>
-        <span :class="[item.completed ? 'completed' : '', 'itemText']">{{
-            item.name
-        }} ({{ item.point }})</span>
-        <span>{{ item.due_date }}</span>
+        <h4 class="event__point">{{item.name}}</h4>
+        <span class="event__duration">{{ item.point }}</span>
+        <p class="event__description">
+            {{ item.due_date }}
+        </p>
+
         <button @click="removeItem()" class="trashcan">
             <font-awesome-icon icon="trash" />
         </button>

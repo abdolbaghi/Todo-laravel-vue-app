@@ -1,15 +1,15 @@
 <template>
-    <div class="addItem">
-        <input type="text" v-model="item.name">
-        <input type="number" v-model="item.point" style="width: 30px;">
-        <select v-model="item.category" >
+    <div class="addItem row">
+        <input type="text" v-model="item.name" class="col-sm-3">
+        <input type="number" v-model="item.point"  class="col-sm-1">
+        <select v-model="item.category"  class="col-sm-3">
             <option v-for="(cat, index) in categories" :key="index" :value="cat.id" :style="{'background-color':crergb(cat.color)}">
                 <img :src = "cat.icon" alt="My Happy SVG"/>
                 {{cat.name}}
             </option>
         </select>
-        <date-picker v-model="item.date" simple></date-picker>
-        <font-awesome-icon @click="addItem()" :class="[item.name ? 'active' : 'inactive', 'plus']" icon="plus-square" />
+        <date-picker v-model="item.date" simple  class="col-sm-3"></date-picker>
+        <font-awesome-icon @click="addItem()" :class="[item.name ? 'active' : 'inactive', 'plus']" icon="plus-square"  class="col-sm-1"/>
     </div>
 </template>
 <script>

@@ -1,9 +1,24 @@
 <template>
-    <div>
-        <div v-for="(item, index) in items" :key="index">
-            <listItem :item="item" class="item" @itemChanged="$emit('reloadlist')" />
-        </div>
-    </div>
+<section class="upcoming-events">
+      <div class="container-2">
+         <h3>
+            Lastest Events
+
+         </h3>
+         <div class="events-wrapper">
+                <listItem v-for="(item, index) in items" :key="index" :item="item"  @itemChanged="$emit('reloadlist')" />
+         </div>
+         <button class="add-event-button">
+            <span class="add-event-button__title">Add Event</span>
+
+            <span class="add-event-button__icon">
+               <i class="ion ion-ios-star-outline"></i>
+            </span> 
+
+
+         </button>
+      </div>
+   </section>
 </template>
 
 <script>

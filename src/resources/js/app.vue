@@ -7,7 +7,11 @@
 </template>
 
 <style>
-
+body{
+    direction: rtl;
+    background: #eeaeca;
+    background: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
+}
 #nav {
   padding: 30px;
 }

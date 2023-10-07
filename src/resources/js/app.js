@@ -6,7 +6,11 @@ import { faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {router} from './router'
 import App from './app.vue';
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 library.add(faPlusSquare, faTrash)
 
@@ -16,6 +20,8 @@ const app = createApp(App)
 
 
 app.use(router)
+    // .use(BootstrapVue)
+    // .use(IconsPlugin)
     .component('font-awesome-icon', FontAwesomeIcon)
     .component('DatePicker', Vue3PersianDatetimePicker)
     .mount('#app');

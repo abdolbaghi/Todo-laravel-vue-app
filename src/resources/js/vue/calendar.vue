@@ -1,15 +1,23 @@
 <template>
     <!-- partial:index.partial.html -->
     <!-- days sourced from: https://nationaldaycalendar.com/february/ -->
-    <h1>February 2022</h1>
-    <p>Holidays and Daily Observances in the United States</p>
+    <div class="row">
+         <div class="col-md-6">
+            <h1>February 2022</h1>
+            <p>Holidays and Daily Observances in the United States</p>
+        </div> 
+        <div class="col-md-6">
+            <BarChart :collection="collection" :key="collection"   />
+        </div>
+    </div>
+    
     
     <ul>
         <div class="item" v-for="(items, date) in collection" > 
             <calendarDay :items="items" :date="date"  />
         </div>
     </ul>
-        <BarChart :collection="collection" :key="collection"   />
+        
 </template>
 
 <script>
@@ -47,8 +55,7 @@ export default {
 }
 </script>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;800&display=swap");
+<style>
 body {
   display: flex;
   flex-flow: column;

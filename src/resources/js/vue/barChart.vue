@@ -1,9 +1,9 @@
 <template>
-  <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  />
+        <Bar
+            id="my-chart-id"
+            :options="chartOptions"
+            :data="chartData"
+        />
 </template>
 
 <script>
@@ -25,7 +25,10 @@ export default {
       groupeddata:this.collection,
       chartData: this.create_bar_data(),
       chartOptions: {
-        responsive: true
+        responsive: true,
+        scaleOverride: true,
+        scaleSteps: 1,
+        scaleStartValue: 0
       },
     }
   },
@@ -33,9 +36,16 @@ export default {
     create_bar_data(){
         var done={} 
         var not_done={}
+        var keys=[]
+        var colors=[]
         for(const date in this.collection){
             for(const index in this.collection[date]){
                 const item = this.collection[date][index]
+                if ( !keys.includes(item.category.name)){
+                    keys.push(item.category.name)
+                    colors.push("rgb("+item.category.color[0]+","+item.category.color[1]+","+item.category.color[2]+")")
+
+                }
                 if(item.completed){
                     if(item.category.name in done){
                         done[item.category.name].count += 1;
@@ -57,8 +67,8 @@ export default {
 
             }
         }
-        var keys = Object.keys(done);
-        keys = keys.concat(Object.keys(not_done));
+        // var keys = Object.keys(done);
+        // keys = new Set(keys.concat(Object.keys(not_done)));
         var done_data = []
         var not_done_data = []
         for(const index in keys){
@@ -79,7 +89,9 @@ export default {
 
         return {
             labels: keys,
-            datasets: [ { data: done_data },{ data: not_done_data } ]
+            datasets: [ { data: done_data,label: 'کارهای انجام شده',backgroundColor:"rgb(88 250 21)" },
+                        { data: not_done_data,label: 'کارهای انجام نشده',backgroundColor:"rgb(252, 163, 16)" } ],
+            borderWidth: 1
         
         }
     }
