@@ -4,7 +4,7 @@ return [
 
     [
         "id"=>1,
-        "name"=>"love and relationship",
+        "name"=>"عشق و رابطه",
         "description"=>"love and relationship",
         #         R    G   B
         "color"=>[250, 70, 21],
@@ -13,7 +13,7 @@ return [
     ],
     [
         "id"=>2,
-        "name"=>"health and fitness",
+        "name"=>"سلامت و تناسب اندام",
         "description"=>"health and fitness",
         #         R    G    B
         "color"=>[252, 163, 16],
@@ -22,7 +22,7 @@ return [
     ],
     [
         "id"=>3,
-        "name"=>"career and education",
+        "name"=>"حرفه و تحصیلات",
         "description"=>"career and education",
         #           R    G   B
         "color"=>[254, 215, 19],
@@ -31,7 +31,7 @@ return [
     ],
     [
         "id"=>4,
-        "name"=>"family",
+        "name"=>"خانواده",
         "description"=>"family",
         #           R    G   B
         "color"=>[163, 218, 231],
@@ -40,7 +40,7 @@ return [
     ],
     [
         "id"=>5,
-        "name"=>"friends and social",
+        "name"=>"دوستان و اجتماعی",
         "description"=>"friends and social",
         #           R    G   B
         "color"=>[107, 131, 189],
@@ -49,7 +49,7 @@ return [
     ],
     [
         "id"=>6,
-        "name"=>"fun and recreation",
+        "name"=>"تفریح و سرگرمی",
         "description"=>"fun and recreation",
         #           R    G   B
         "color"=>[210, 108, 244],
@@ -58,7 +58,7 @@ return [
     ],
     [
         "id"=>7,
-        "name"=>"finance",
+        "name"=>"مالی و دارایی",
         "description"=>"finance",
         #           R    G   B
         "color"=>[255, 192, 203],
@@ -67,7 +67,7 @@ return [
     ],
     [
         "id"=>8,
-        "name"=>"personal development",
+        "name"=>"توسعه شخصی",
         "description"=>"personal",
         #           R    G   B
         "color"=>[254, 147, 176],
