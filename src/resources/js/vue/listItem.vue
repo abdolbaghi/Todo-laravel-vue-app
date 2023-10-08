@@ -1,14 +1,11 @@
 <template>
-    <div class="event">
+    <div class="event" :style="{'background-color':crergb(item.category.color),'background-image':'url('+item.category.icon+')'}">
         <input type="checkbox" @change="updateCheck()" v-model="item.completed" ref="inputRef" />
 
-        <i class="ion ion-ios-flame hot" :class="[item.completed ? 'done' : '']" :style="{'background-color':crergb(item.category.color)}"></i>
-        <img :src = "item.category.icon" class="icon-cat"/>
+        <i class="ion ion-ios-flame hot" :class="[item.completed ? 'done' : '']" ></i>
         <h4 class="event__point">{{item.name}}</h4>
-        <span class="event__duration">{{ item.point }}</span>
-        <p class="event__description">
-            {{ item.due_date }}
-        </p>
+        <span class="event__duration">({{ item.point }})</span>
+
 
         <button @click="removeItem()" class="trashcan">
             <font-awesome-icon icon="trash" />
@@ -47,7 +44,7 @@ export default {
                 });
         },
         crergb(color){
-            return "rgb("+color[0]+","+color[1]+","+color[2]+")"
+            return "rgba("+color[0]+","+color[1]+","+color[2]+",0.5)"
         }
     },
 
@@ -59,6 +56,12 @@ export default {
 </script>
 
 <style scoped>
+.event{
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    border-radius: 25px;
+}
 .completed {
     text-decoration: line-through;
     color: #999;
@@ -76,11 +79,11 @@ export default {
 }
 
 .trashcan {
-    background: #e6e6e6;
     border: none;
-    color: #ff0000;
+    color: #6657db;
     outline: none;
     cursor: pointer;
+    float: inline-end;
 }
 .icon-cat {
     max-width:20px

@@ -8,7 +8,7 @@
          <div class="events-wrapper">
                 <listItem v-for="(item, index) in items" :key="index" :item="item"  @itemChanged="$emit('reloadlist')" />
          </div>
-         <button class="add-event-button">
+         <button class="add-event-button" @click="isVisible=true">
             <span class="add-event-button__title">Add Event</span>
 
             <span class="add-event-button__icon">

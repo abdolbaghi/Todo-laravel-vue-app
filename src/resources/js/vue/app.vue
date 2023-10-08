@@ -7,7 +7,6 @@
       <div class="container">
          <span>Welcome Back!</span>
          <h1>Calendar Plan</h1>
-
          <div class="menu-toggle">
             <div>
                <span></span>
@@ -17,15 +16,14 @@
          </div>
       </div>
    </header>
-
    <!--======= Today =======-->
 
    <section class="today-box" id="today-box">
-      <span class="breadcrumb">Today</span>
-      <h3 class="date-title">May 15, 2018</h3>
+      <span class="breadcrumb">امروز</span>
+      <h3 class="date-title">{{ new Date().toLocaleDateString('fa-IR') }}</h3>
 
-      <div class="plus-icon">
-         <i class="ion ion-ios-add"></i>
+      <div class="plus-icon" @click="this.isVisible=true">
+        <i class="ion ion-ios-add"><font-awesome-icon icon="plus-circle" /></i>
       </div>
    </section>
 
@@ -33,9 +31,12 @@
 
    <listView :items="items" @reloadlist="getList()" />
     </div>
+    <Modal :visible="isVisible">
+      <addItemForm :categories="categories" @reloadlist="getList()" />
+    </Modal>
         <div class="heading">
             <h2 id="title">Todo List</h2>
-          <addItemForm :categories="categories" @reloadlist="getList()" />  
+            
         </div>
     
 </template>
@@ -81,7 +82,6 @@ export default {
     }
 }
 </script>
-
 <style >
 @charset "UTF-8";
 html {
@@ -273,7 +273,7 @@ body {
   font-size: 22px;
   font-weight: 700;
   background: #fff;
-  color: #777;
+  color: #485fed;
   width: 45px;
   height: 45px;
   border: 6px solid #485fed;
@@ -307,7 +307,7 @@ body {
   left: 0;
 }
 .upcoming-events .container-2 h3::after {
-  content: "";
+  content: "\2713";
   font-family: "Ionicons";
   color: rgba(0, 0, 0, 0.1);
   vertical-align: middle;
@@ -323,11 +323,11 @@ body {
   top: -10px;
 }
 .upcoming-events .container-2 .events-wrapper {
-  margin-bottom: 30px;
+  margin-bottom: 11px;
 }
 .upcoming-events .container-2 .events-wrapper .event {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding-right: 30px;
   cursor: pointer;
 }
@@ -344,11 +344,12 @@ body {
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 1px;
+  display: contents;
 }
 .upcoming-events .container-2 .events-wrapper .event .event__duration {
   position: absolute;
   top: 5px;
-  right: 0;
+  right: 15px;
   color: #999;
   font-size: 10px;
   font-weight: 800;
