@@ -28,7 +28,33 @@ export default {
         responsive: true,
         scaleOverride: true,
         scaleSteps: 1,
-        scaleStartValue: 0
+        scaleStartValue: 0,
+        legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 18
+                }
+            },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 18,
+                    stepSize: 1,
+                    beginAtZero: true,
+                    precision: 0,
+
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 14,
+                    stepSize: 1,
+                    beginAtZero: true
+                }
+            }]
+        }
       },
     }
   },

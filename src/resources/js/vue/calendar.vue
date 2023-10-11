@@ -1,15 +1,25 @@
 <template>
+<div class="mobile-wrapper">
+
+   <!--======= Header =======-->
+
+   <header class="header">
+      <div class="container">
+         <span>Welcome Back!</span>
+         <h1>Calendar Plan</h1>
+        
+
+  
+      </div>
+   </header>
     <!-- partial:index.partial.html -->
     <!-- days sourced from: https://nationaldaycalendar.com/february/ -->
-    <div class="row">
-         <div class="col-md-6">
-            <h1>February 2022</h1>
-            <p>Holidays and Daily Observances in the United States</p>
-        </div> 
-        <div class="col-md-6">
-            <BarChart :collection="collection" :key="collection"   />
-        </div>
-    </div>
+     <section class="chart-box" id="chart-box">
+      <span class="breadcrumb">نمای کلی</span>
+      <h3 class="date-title">-</h3>
+
+      <BarChart :collection="collection" :key="collection"   />
+   </section>
     
     
     <ul>
@@ -17,7 +27,8 @@
             <calendarDay :items="items" :date="date"  />
         </div>
     </ul>
-        
+              </div>
+
 </template>
 
 <script>
@@ -56,13 +67,99 @@ export default {
 </script>
 
 <style>
+.chart-box {
+  background: #eeaeca;
+  background: radial-gradient(circle,#eeaeca 0%,#94bbe9 100%);
+  
+  color: #fff;
+  padding: 37px 40px;
+  position: relative;
+  box-shadow: 0px 0px 40px -9px #485fed;
+  margin-bottom: 50px;
+}
+.chart-box::before {
+  content: "";
+  background: linear-gradient(to left, #485fed, rgba(255, 44, 118, 0.25)), #485fed;
+  opacity: 0.4;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: auto;
+  position: absolute;
+  bottom: -13px;
+  right: 50%;
+  transform: translatex(-50%);
+  border-radius: 50%;
+  box-shadow: 0px 0px 40px 0 #485fed;
+}
+.chart-box .breadcrumb {
+  font-weight: 300;
+  position: relative;
+}
+.chart-box .breadcrumb::after {
+  content: "";
+  font-family: "Ionicons";
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 100;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  right: 45px;
+  top: 3px;
+}
+.chart-box .date-title {
+  font-size: 20px;
+  margin: 7px 0 0 0;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+}
+.chart-box .plus-icon {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0px 10px 30px -14px #000;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 40px;
+  cursor: pointer;
+  transition: all 350ms ease;
+  transition-timing-function: cubic-bezier(0.05, 1.8, 1, 1.57);
+}
+.chart-box .plus-icon:hover {
+  transform: translateY(-40%);
+}
+.chart-box .plus-icon i {
+  font-size: 22px;
+  font-weight: 700;
+  background: #fff;
+  color: #485fed;
+  width: 45px;
+  height: 45px;
+  border: 6px solid #485fed;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chart-box .plus-icon:active {
+  top: 52%;
+  transform: translatey(-52%);
+  right: 38px;
+  box-shadow: 0px 8px 30px -14px #000;
+}
 body {
   display: flex;
   flex-flow: column;
   align-items: center;
   font-family: "Poppins", serif;
+  /*
   background: #eeaeca;
   background: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
+  */
 }
 
 h1 {

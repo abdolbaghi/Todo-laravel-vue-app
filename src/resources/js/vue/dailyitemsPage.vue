@@ -14,10 +14,8 @@
   
       </div>
    </header>
-   <section class="today-box" id="today-box">
-      <span class="breadcrumb">امروز</span>
-      <h3 class="date-title">{{ new Date().toLocaleDateString('fa-IR') }}</h3>
-
+   <section class="daily-box" id="daily-box">
+      <span class="breadcrumb">کارهای روزانه</span>
       <div class="plus-icon" @click="addkeyswict()">
         <i class="ion ion-ios-add"><font-awesome-icon icon="plus-circle" /></i>
       </div>
@@ -25,15 +23,15 @@
 
    <!--======= Upcoming Events =======-->
 
-   <listView :items="items" @reloadlist="getList()" />
-  <addItemForm :categories="categories" v-show="isVisible"  @close="closeModal()" @done="doneModal()" />
+   <listDailyView :items="items" @reloadlist="getList()" />
+  <dailyItemForm :categories="categories" v-show="isVisible"  @close="closeModal()" @done="doneModal()" />
          </div>
 
 </template>
 
 <script>
-import addItemForm from './addItemForm.vue';
-import listView from './listView.vue';
+import dailyItemForm from './dailyItemForm.vue';
+import listDailyView from './listDailyView.vue';
 export default {
     data() {
         return {
@@ -44,12 +42,12 @@ export default {
         }
     },
     components: {
-        addItemForm,
-        listView
+        dailyItemForm,
+        listDailyView
     },
     methods: {
         getList() {
-            axios.get('api/items').then((response)=> {
+            axios.get('api/daily_item').then((response)=> {
                 this.items = response.data
             }).catch((error) => {
                 console.log(error);
@@ -89,15 +87,15 @@ export default {
 <style >
 @charset "UTF-8";
 
-.today-box {
-  background: linear-gradient(to left, #78c8cc, rgba(255, 44, 118, 0.25)), #7c48ed;
+.daily-box {
+  background: linear-gradient(to left, #485fed, rgba(255, 44, 118, 0.25)), #485fed;
   color: #fff;
   padding: 37px 40px;
   position: relative;
   box-shadow: 0px 0px 40px -9px #485fed;
   margin-bottom: 50px;
 }
-.today-box::before {
+.daily-box::before {
   content: "";
   background: linear-gradient(to left, #485fed, rgba(255, 44, 118, 0.25)), #485fed;
   opacity: 0.4;
@@ -113,11 +111,11 @@ export default {
   border-radius: 50%;
   box-shadow: 0px 0px 40px 0 #485fed;
 }
-.today-box .breadcrumb {
+.daily-box .breadcrumb {
   font-weight: 300;
   position: relative;
 }
-.today-box .breadcrumb::after {
+.daily-box .breadcrumb::after {
   content: "";
   font-family: "Ionicons";
   vertical-align: middle;
@@ -130,14 +128,14 @@ export default {
   right: 45px;
   top: 3px;
 }
-.today-box .date-title {
+.daily-box .date-title {
   font-size: 20px;
   margin: 7px 0 0 0;
   letter-spacing: 1px;
   font-weight: 600;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
 }
-.today-box .plus-icon {
+.daily-box .plus-icon {
   border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   box-shadow: 0px 10px 30px -14px #000;
@@ -149,10 +147,10 @@ export default {
   transition: all 350ms ease;
   transition-timing-function: cubic-bezier(0.05, 1.8, 1, 1.57);
 }
-.today-box .plus-icon:hover {
+.daily-box .plus-icon:hover {
   transform: translateY(-40%);
 }
-.today-box .plus-icon i {
+.daily-box .plus-icon i {
   font-size: 22px;
   font-weight: 700;
   background: #fff;
@@ -165,7 +163,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.today-box .plus-icon:active {
+.daily-box .plus-icon:active {
   top: 52%;
   transform: translatey(-52%);
   left: 38px;

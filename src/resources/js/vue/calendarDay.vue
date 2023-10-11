@@ -79,8 +79,8 @@ ul li {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 ul li time {
-  font-size: 2rem;
-  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  margin: 0 auto;
   font-weight: 500;
 }
 ul .today {

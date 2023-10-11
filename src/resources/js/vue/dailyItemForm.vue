@@ -20,7 +20,6 @@
                         {{cat.name}}
                     </option>
                 </select>
-                <date-picker v-model="item.date" simple  class="col-sm-3"></date-picker>
             </div>
           </div>
 
@@ -44,7 +43,6 @@ export default {
                     name: '',
                     point: 1,
                     category: null,
-                    date: ''
                 },
             }
     },
@@ -63,9 +61,7 @@ export default {
                 return;
             }
             axios
-            .post("api/item/store", {
-                    item: this.item,
-                })
+            .post("api/daily_item/store", this.item)
                 .then((response) => {
                     if (response.status == 201) {
                         this.item.name = "";

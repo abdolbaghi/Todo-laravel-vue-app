@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\PersianDateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateItemReq extends FormRequest
+class CreateDailyItemReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class CreateItemReq extends FormRequest
     public function rules()
     {
         return [
-            "date" => ["nullable",new PersianDateRule()],
             "point"=>["required","between:1,10"],
             "name"=>["required","string"],
             "category"=>["required","between:1,8"],
