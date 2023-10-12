@@ -14,6 +14,7 @@ RUN apt-get update -y \
 # RUN sed -i -e 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//mirror:\/\/mirrors\.ubuntu.com\/IR\.txt/' /etc/apt/sources.list
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
+    cron \
     g++ \
     libbz2-dev \
     libc-client-dev \
@@ -75,4 +76,7 @@ RUN apt-get update && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* /var/tmp/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-CMD [ "php","artisan", "serve" ]
+COPY crontab /etc/crontabs/root
+RUN service cron start 
+RUN crontab /etc/crontabs/root
+# CMD [ "php","artisan", "serve" ]
