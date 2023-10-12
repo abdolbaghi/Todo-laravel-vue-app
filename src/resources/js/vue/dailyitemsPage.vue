@@ -116,7 +116,7 @@ export default {
   position: relative;
 }
 .daily-box .breadcrumb::after {
-  content: "";
+  content: "<";
   font-family: "Ionicons";
   vertical-align: middle;
   font-size: 12px;
@@ -231,8 +231,7 @@ export default {
 .upcoming-events .container-2 .events-wrapper .event .event__duration {
   position: absolute;
   top: 5px;
-  right: 15px;
-  color: #999;
+  color: #000;
   font-size: 10px;
   font-weight: 800;
   font-style: italic;

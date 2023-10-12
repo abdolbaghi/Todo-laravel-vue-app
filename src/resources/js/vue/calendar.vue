@@ -7,7 +7,11 @@
       <div class="container">
          <span>Welcome Back!</span>
          <h1>Calendar Plan</h1>
-        
+       <span class="breadcrumb">از تاریخ</span>
+      <date-picker v-model="this.date_from" @change="getList()"  simple></date-picker>
+      <span class="breadcrumb">تا تاریخ</span>
+      <date-picker v-model="this.date_to" @change="getList()"  simple></date-picker>
+
 
   
       </div>
@@ -15,8 +19,7 @@
     <!-- partial:index.partial.html -->
     <!-- days sourced from: https://nationaldaycalendar.com/february/ -->
      <section class="chart-box" id="chart-box">
-      <span class="breadcrumb">نمای کلی</span>
-      <h3 class="date-title">-</h3>
+      
 
       <BarChart :collection="collection" :key="collection"   />
    </section>
@@ -35,6 +38,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import calendarDay from './calendarDay.vue';
 import BarChart from './barChart.vue';
+import DatePicker from 'vue3-persian-datetime-picker';
 import {  ref } from 'vue';
 const renderComponent = ref(false);
 
@@ -42,6 +46,8 @@ export default {
     data() {
         return {
             collection: [],
+            date_from: null,
+            date_to:null
         }
     },
     components: {
@@ -50,7 +56,12 @@ export default {
     },
     methods: {
         getList() {
-            axios.get('api/items/grouped').then((response)=> {
+            axios.get('api/items/grouped',{
+                params: {
+                    from: this.date_from,
+                    to: this.date_to,
+                }
+            }).then((response)=> {
                 this.collection = response.data
                 this.$forceUpdate(); // add forceUpdate
 
@@ -98,7 +109,7 @@ export default {
   position: relative;
 }
 .chart-box .breadcrumb::after {
-  content: "";
+  content: ">";
   font-family: "Ionicons";
   vertical-align: middle;
   font-size: 12px;
@@ -169,9 +180,10 @@ h1 {
 
 ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   flex-wrap: wrap;
   list-style: none;
+  padding: 0 20px !important;
 }
 
 </style>

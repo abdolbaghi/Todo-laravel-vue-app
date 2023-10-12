@@ -11,6 +11,7 @@ class DailyItem extends Model
     protected $fillable = [
         'name',
         'point',
+        'time',
         'cat_id',
         'user_id',
     ];

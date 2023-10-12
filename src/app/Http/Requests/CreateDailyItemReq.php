@@ -28,6 +28,7 @@ class CreateDailyItemReq extends FormRequest
             "point"=>["required","between:1,10"],
             "name"=>["required","string"],
             "category"=>["required","between:1,8"],
+            "time" => ["nullable","date_format:H:i"]
         ];
     }
 }

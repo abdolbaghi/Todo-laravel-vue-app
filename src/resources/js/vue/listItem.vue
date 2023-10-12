@@ -4,7 +4,7 @@
 
         <i class="ion ion-ios-flame hot" :class="[item.completed ? 'done' : '']" ></i>
         <h4 class="event__point">{{item.name}}</h4>
-        <span class="event__duration">({{ item.point }})</span>
+        <span class="event__duration" v-if="item.due_date != null && timeFromDatetime(item.due_date).length > 0">({{ timeFromDatetime(item.due_date) }})</span>
 
 
         <button @click="removeItem()" class="trashcan">
@@ -45,6 +45,14 @@ export default {
         },
         crergb(color){
             return "rgba("+color[0]+","+color[1]+","+color[2]+",0.5)"
+        },
+        timeFromDatetime(date_time){
+            let time_arr= date_time.split(" ")[1].split(":")
+            if (time_arr[0] == "00" && time_arr[1] == "00")
+            {
+                return ""
+            }
+            return time_arr[0]+":"+time_arr[1]
         }
     },
 

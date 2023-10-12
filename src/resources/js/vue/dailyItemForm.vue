@@ -20,6 +20,8 @@
                         {{cat.name}}
                     </option>
                 </select>
+                <date-picker v-model="item.time" :type="'time'" simple ></date-picker>
+  
             </div>
           </div>
 
@@ -43,6 +45,7 @@ export default {
                     name: '',
                     point: 1,
                     category: null,
+                    time: null,
                 },
             }
     },

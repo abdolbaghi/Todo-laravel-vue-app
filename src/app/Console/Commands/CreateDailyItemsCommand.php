@@ -37,7 +37,7 @@ class CreateDailyItemsCommand extends Command
                 'point' => $item->point,
                 'cat_id' => $item->cat_id,
                 'user_id' => $item->user_id,
-                'due_date' => Carbon::now()->toDateString(),
+                'due_date' => Carbon::now()->toDateString()." ".($item->time?$item->time:""),
             ];
 
         }

@@ -32,6 +32,7 @@ class DailyItemController extends Controller
             'name' => $request->input('name'),
             'point' => $request->input('point'),
             'cat_id' => $request->input('category'),
+            'time' => $request->input('time'),
         ]);
 
         return $item;
