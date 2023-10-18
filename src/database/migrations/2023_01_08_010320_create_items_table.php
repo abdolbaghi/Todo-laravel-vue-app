@@ -21,7 +21,7 @@ return new class extends Migration
             $table->smallInteger('cat_id')->unsigned();
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
-            $table->date('due_date')->nullable();
+            $table->dateTime('due_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references("id")->on("users")->onDelete("set null");

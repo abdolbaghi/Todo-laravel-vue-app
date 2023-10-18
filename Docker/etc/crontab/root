@@ -1,0 +1,4 @@
+# must be ended with a new line "LF" (Unix) and not "CRLF" (Windows)
+* * * * * cd /var/www/html && php artisan schedule:run >>  /var/log/crontab/cron.log
+0 0 * * * cd /var/www/html && php artisan command:create_daily_items >>  /var/log/crontab/cron.log
+# An empty line is required at the end of this file for a valid cron file.

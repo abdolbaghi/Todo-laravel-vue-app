@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('command:create_daily_items')->daily();
+        $schedule->command('command:create_daily_items')->daily()->at("00:00")->withoutOverlapping();
     }
 
     /**
