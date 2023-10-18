@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedSmallInteger('point');
             $table->unsignedSmallInteger('cat_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->onupdate()->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

@@ -22,7 +22,8 @@ return new class extends Migration
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->dateTime('due_date')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->onupdate()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->softDeletes();
             $table->foreign('user_id')->references("id")->on("users")->onDelete("set null");
         });
